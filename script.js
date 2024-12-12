@@ -25,20 +25,13 @@ cardArray.forEach((card) => {
   cardsContainerElement.appendChild(cardElement);
 
   cardElement.innerHTML = `
-        <img id="image" src=${card["front-image"]} alt="Card Front" />
+        <img class="front" src="${card["front-image"]}" alt="Card Front" />
+        <img class="back" src="${card["back-image"]}" alt="Card Back" />
        `;
   cardElement.addEventListener("click", () => flipCards(card, cardElement));
 });
 
 function flipCards(card, cardElement) {
   card.state = !card.state;
-  if (card.state) {
-    cardElement.innerHTML = `
-        <img id="image" src=${card["back-image"]} alt="Card Back" />
-       `;
-  } else {
-    cardElement.innerHTML = `
-        <img id="image" src=${card["front-image"]} alt="Card Front" />
-       `;
-  }
+  cardElement.classList.toggle("flipped", card.state);
 }
