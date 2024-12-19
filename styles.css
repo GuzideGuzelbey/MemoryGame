@@ -50,8 +50,12 @@ body {
   position: absolute;
   border-radius: 8px;
 }
+.card .front {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
 
-.back {
+.card .back {
   transform: rotateY(180deg);
 }
 
@@ -61,8 +65,13 @@ body {
     text-align: center;
   }
 
+  .cards-container {
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .card {
-    width: 240px;
-    height: 320px;
+    width: 90px;
+    height: 120px;
   }
 }
