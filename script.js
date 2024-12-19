@@ -8,6 +8,8 @@ const cardArray = [
   },
 ];
 
+const doubleObjectsArray = [];
+
 const containerElement = document.querySelector("#container");
 const gameTitleElement = document.createElement("h1");
 gameTitleElement.classList.add("game-title");
