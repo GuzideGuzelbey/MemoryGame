@@ -42,8 +42,18 @@ const cardArray = [
     "front-image": "assets/cardpattern.jpg",
   },
 ];
-
+//Doubling
 let doubleObjectsArray = [];
+cardArray.forEach((card) => {
+  doubleObjectsArray.push(card);
+  doubleObjectsArray.push(card);
+});
+
+//Shuffling
+const shuffeled = doubleObjectsArray.sort(() => {
+  const randomTrueOrFalse = Math.random() > 0.5;
+  return randomTrueOrFalse ? 1 : -1;
+});
 
 const containerElement = document.querySelector("#container");
 const gameTitleElement = document.createElement("h1");
@@ -56,7 +66,7 @@ cardsContainerElement.classList.add("cards-container");
 containerElement.appendChild(cardsContainerElement);
 
 // Generating card elements
-cardArray.forEach((card) => {
+shuffeled.forEach((card) => {
   const cardElement = document.createElement("div");
   cardElement.classList.add("card");
   cardsContainerElement.appendChild(cardElement);

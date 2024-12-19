@@ -5,7 +5,7 @@ body {
 #container {
   display: flex;
   flex-direction: column;
-  padding: 5rem;
+  padding: 4rem;
   align-items: center;
 }
 
@@ -19,13 +19,15 @@ body {
 }
 
 .cards-container {
-  padding-top: 50px;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 15px 15px;
+  grid-gap: 10px 10px;
   place-items: center;
   perspective: 1000px;
+  background-color: rgb(169, 120, 171, 0.5);
+  border-radius: 8px;
+  padding: 10px;
 }
 
 .card {
