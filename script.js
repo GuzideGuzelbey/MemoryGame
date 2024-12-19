@@ -6,6 +6,41 @@ const cardArray = [
     "back-image": "assets/powercard.jpg",
     "front-image": "assets/cardpattern.jpg",
   },
+  {
+    id: 2,
+    name: "freedomCard",
+    state: false,
+    "back-image": "assets/freedomCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
+  {
+    id: 3,
+    name: "happinessCard",
+    state: false,
+    "back-image": "assets/happinessCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
+  {
+    id: 4,
+    name: "loveCard",
+    state: false,
+    "back-image": "assets/loveCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
+  {
+    id: 5,
+    name: "powertyCard",
+    state: false,
+    "back-image": "assets/powertyCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
+  {
+    id: 6,
+    name: "wealthCard",
+    state: false,
+    "back-image": "assets/wealthCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
 ];
 
 const doubleObjectsArray = [];
