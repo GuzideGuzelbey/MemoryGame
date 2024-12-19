@@ -43,7 +43,7 @@ const cardArray = [
   },
 ];
 
-const doubleObjectsArray = [];
+let doubleObjectsArray = [];
 
 const containerElement = document.querySelector("#container");
 const gameTitleElement = document.createElement("h1");
