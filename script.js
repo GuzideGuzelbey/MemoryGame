@@ -8,7 +8,7 @@ const cardArray = [
   },
 ];
 
-const cardsContainerElement = document.querySelector("cards-container");
+const cardsContainerElement = document.querySelector("#cards-container");
 
 // Generating card elements
 cardArray.forEach((card) => {

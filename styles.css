@@ -2,7 +2,7 @@ body {
   background-color: violet;
 }
 
-#container {
+.container {
   display: flex;
   flex-direction: column;
   padding: 10rem;
@@ -17,7 +17,7 @@ body {
   text-align: justify;
 }
 
-.cards-container {
+#cards-container {
   display: flex;
   flex-wrap: wrap;
   perspective: 1000px;
