@@ -1,6 +1,6 @@
 # MemoryGame
 
-Instructions Given by the Mentors
+Instructions Given by the HackYourFutureDenmarkMentors
 
 You joined an online game platform startup and your task is to build one of the small classic games.
 
