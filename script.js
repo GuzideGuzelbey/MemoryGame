@@ -8,15 +8,7 @@ const cardArray = [
   },
 ];
 
-const containerElement = document.querySelector("#container");
-const gameTitleElement = document.createElement("h1");
-gameTitleElement.classList.add("game-title");
-gameTitleElement.innerHTML = "Memory Card Game";
-containerElement.appendChild(gameTitleElement);
-
-const cardsContainerElement = document.createElement("div");
-cardsContainerElement.classList.add("cards-container");
-containerElement.appendChild(cardsContainerElement);
+const cardsContainerElement = document.querySelector("cards-container");
 
 // Generating card elements
 cardArray.forEach((card) => {
