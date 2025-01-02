@@ -6,12 +6,65 @@ const cardArray = [
     "back-image": "assets/powercard.jpg",
     "front-image": "assets/cardpattern.jpg",
   },
+  {
+    id: 2,
+    name: "freedomCard",
+    state: false,
+    "back-image": "assets/freedomCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
+  {
+    id: 3,
+    name: "happinessCard",
+    state: false,
+    "back-image": "assets/happinessCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
+  {
+    id: 4,
+    name: "loveCard",
+    state: false,
+    "back-image": "assets/loveCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
+  {
+    id: 5,
+    name: "powertyCard",
+    state: false,
+    "back-image": "assets/powertyCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
+  {
+    id: 6,
+    name: "wealthCard",
+    state: false,
+    "back-image": "assets/wealthCard.jpg",
+    "front-image": "assets/cardpattern.jpg",
+  },
 ];
+
+//Doubling
+let doubleObjectsArray = [];
+cardArray.forEach((card) => {
+  doubleObjectsArray.push(card);
+  doubleObjectsArray.push(card);
+});
+
+//Shuffling
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+const shuffeled = shuffleArray(doubleObjectsArray);
 
 const cardsContainerElement = document.querySelector("#cards-container");
 
 // Generating card elements
-cardArray.forEach((card) => {
+shuffeled.forEach((card) => {
   const cardElement = document.createElement("div");
   cardElement.classList.add("card");
   cardsContainerElement.appendChild(cardElement);
@@ -24,6 +77,11 @@ cardArray.forEach((card) => {
 });
 
 function flipCards(card, cardElement) {
-  card.state = !card.state;
-  cardElement.classList.toggle("flipped", card.state);
+  if (!cardElement.classList.contains("flipped")) {
+    card.state = true;
+    cardElement.classList.add("flipped");
+  } else {
+    card.state = false;
+    cardElement.classList.remove("flipped");
+  }
 }
