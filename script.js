@@ -52,10 +52,7 @@ cardArray.forEach((card) => {
 
 //Shuffling
 function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
+  array.sort(() => 0.5 - Math.random());
   return array;
 }
 
@@ -84,4 +81,8 @@ function flipCards(card, cardElement) {
     card.state = false;
     cardElement.classList.remove("flipped");
   }
+}
+
+function moveCounter() {
+  moves++;
 }
