@@ -45,6 +45,7 @@ const cardArray = [
 
 //Doubling
 let doubleObjectsArray = [...cardArray, ...cardArray];
+
 //Shuffling
 function shuffleArray(array) {
   array.sort(() => 0.5 - Math.random());
