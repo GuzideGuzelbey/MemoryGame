@@ -2,6 +2,33 @@ body {
   background-color: violet;
 }
 
+.features {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.timer {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  color: rgb(189, 189, 189);
+  background-color: rgb(63, 63, 63);
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+
+.timer span {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 1.5rem;
+}
+
+.timer span:last-child {
+  margin-left: 0.3rem;
+}
+
 .container {
   display: flex;
   flex-direction: column;

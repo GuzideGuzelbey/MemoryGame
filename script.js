@@ -44,12 +44,7 @@ const cardArray = [
 ];
 
 //Doubling
-let doubleObjectsArray = [];
-cardArray.forEach((card) => {
-  doubleObjectsArray.push(card);
-  doubleObjectsArray.push(card);
-});
-
+let doubleObjectsArray = [...cardArray, ...cardArray];
 //Shuffling
 function shuffleArray(array) {
   array.sort(() => 0.5 - Math.random());
@@ -81,8 +76,4 @@ function flipCards(card, cardElement) {
     card.state = false;
     cardElement.classList.remove("flipped");
   }
-}
-
-function moveCounter() {
-  moves++;
 }
