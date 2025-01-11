@@ -6,12 +6,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 0.2rem;
   padding-bottom: 2rem;
+  gap: 1rem;
 }
 
 .timer {
   font-family: "Orbitron", sans-serif;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   color: rgb(189, 189, 189);
   background-color: rgb(63, 63, 63);
   padding: 0.2rem;
@@ -27,6 +29,16 @@ body {
 
 .timer span:last-child {
   margin-left: 0.3rem;
+}
+
+.flip-counter {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgb(217, 211, 43);
+  background-color: rgb(63, 63, 63);
+  padding: 0.2rem;
+  border-radius: 5px;
 }
 
 .container {
@@ -50,7 +62,7 @@ body {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px 10px;
+  grid-gap: 15px 15px;
   place-items: center;
   perspective: 1000px;
   background-color: rgb(169, 120, 171, 0.5);
