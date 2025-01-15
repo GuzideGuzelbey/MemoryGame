@@ -41,7 +41,7 @@ const cardArray = [
 const doulbledCards = cardArray.map((card) => ({ ...card, id: card.id * 2 }));
 let doubleObjectsArray = [...cardArray, ...doulbledCards];
 
-//Shuffling
+//Shuffling (picked up from https://stackoverflow.com/a/12646864)
 function shuffleArray(array) {
   array.sort(() => 0.5 - Math.random());
   return array;
