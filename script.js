@@ -68,6 +68,8 @@ shuffeled.forEach((card) => {
         <img class="front" src="${card["front-image"]}" alt="Card Front" />
         <img class="back" src="${card["back-image"]}" alt="Card Back" />
        `;
+
+  cardElement.classList.toggle("flipped", card.state); //state of the card in js and DOM will be sync
   cardElement.addEventListener("click", () => flipCards(card, cardElement));
 });
 
@@ -83,24 +85,20 @@ function flipCards(card, cardElement) {
   if (!timer) {
     startTimer();
   }
-  if (
-    !cardElement.classList.contains("flipped") &&
-    flippedCards.length < 2 &&
-    !matchedCards.includes(card)
-  ) {
+  if (!card.state && flippedCards.length < 2 && !matchedCards.includes(card)) {
     card.state = true;
-    cardElement.classList.add("flipped");
+    cardElement.classList.toggle("flipped", card.state); // state of the card in js and DOM will be sync
     flippedCards.push(card);
     flipCounter++;
     updateFlipCounter();
-
+    // Checking for a match if two cards are flipped
     if (flippedCards.length === 2) {
       checkForMatch();
     }
   }
 }
 
-// Checking matches for the two flipped cards
+// Function checking matches for the two flipped cards
 function checkForMatch() {
   const [card1, card2] = flippedCards;
 
@@ -117,7 +115,7 @@ function checkForMatch() {
   setTimeout(() => {
     flippedCards.forEach((card) => {
       card.state = false;
-      card.cardElement.classList.remove("flipped");
+      card.cardElement.classList.toggle("flipped", card.state); // state of the card in js and DOM will be sync
     });
     flippedCards = [];
   }, twoCardsRevealDuration);
