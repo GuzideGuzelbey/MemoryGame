@@ -79,11 +79,6 @@ shuffeled.forEach((card) => {
 });
 
 function flipCards(card, cardElement) {
-  if (!cardElement.classList.contains("flipped")) {
-    card.state = true;
-    cardElement.classList.add("flipped");
-  } else {
-    card.state = false;
-    cardElement.classList.remove("flipped");
-  }
+  card.state = !card.state;
+  cardElement.classList.toggle("flipped", card.state);
 }
