@@ -56,19 +56,13 @@ const shuffeled = shuffleArray(doubleObjectsArray);
 
 const cardsContainerElement = document.querySelector("#cards-container");
 
-let flippedCards = [];
-let matchedCards = [];
-let flipCounter = 0;
-let timer = null;
-let timeElapsed = 0;
-
 // Generating card elements
 shuffeled.forEach((card) => {
   const cardElement = document.createElement("div");
   cardElement.classList.add("card");
   cardsContainerElement.appendChild(cardElement);
 
-  card.cardElement = cardElement;
+  card.cardElement = cardElement; // to prevent
 
   cardElement.innerHTML = `
         <img class="front" src="${card["front-image"]}" alt="Card Front" />
@@ -77,10 +71,15 @@ shuffeled.forEach((card) => {
   cardElement.addEventListener("click", () => flipCards(card, cardElement));
 });
 
-console.log(shuffeled);
+let flippedCards = [];
+let matchedCards = [];
+let flipCounter = 0;
+let timer = null;
+let timeElapsed = 0;
 
-//Starting timer with the first click
+//Card flipping logic
 function flipCards(card, cardElement) {
+  // starting the timer with the first click
   if (!timer) {
     startTimer();
   }
@@ -101,6 +100,7 @@ function flipCards(card, cardElement) {
   }
 }
 
+// Checking matches for the two flipped cards
 function checkForMatch() {
   const [card1, card2] = flippedCards;
 
