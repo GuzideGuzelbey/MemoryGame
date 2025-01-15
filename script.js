@@ -41,7 +41,7 @@ const cardArray = [
 const doulbledCards = cardArray.map((card) => ({ ...card, id: card.id * 2 }));
 let doubleObjectsArray = [...cardArray, ...doulbledCards];
 
-//Shuffling
+//Shuffling (reference code: https://stackoverflow.com/a/12646864)
 function shuffleArray(array) {
   for (var i = array.length - 1; i >= 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
@@ -112,13 +112,15 @@ function checkForMatch() {
       alert("Yay! You won!");
     }
   }
+
+  const twoCardsRevealDuration = 700;
   setTimeout(() => {
     flippedCards.forEach((card) => {
       card.state = false;
       card.cardElement.classList.remove("flipped");
     });
     flippedCards = [];
-  }, 700);
+  }, twoCardsRevealDuration);
 }
 
 function startTimer() {
