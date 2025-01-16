@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  doubleShuffleCards(); //calling the main function here
+  doubleShuffleGenerateCards(); //calling the main function here
 }); // makes the js run after the HTML structure is ready in the DOM to be able to manipulate or interact with them
 
 function getData(callback) {
