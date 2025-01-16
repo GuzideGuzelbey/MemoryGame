@@ -1,45 +1,18 @@
-const cardArray = [
-  {
-    id: 1,
-    state: false,
-    "back-image": "assets/powercard.jpg",
-    "front-image": "assets/cardpattern.jpg",
-  },
-  {
-    id: 2,
-    state: false,
-    "back-image": "assets/freedomCard.jpg",
-    "front-image": "assets/cardpattern.jpg",
-  },
-  {
-    id: 3,
-    state: false,
-    "back-image": "assets/happinessCard.jpg",
-    "front-image": "assets/cardpattern.jpg",
-  },
-  {
-    id: 4,
-    state: false,
-    "back-image": "assets/loveCard.jpg",
-    "front-image": "assets/cardpattern.jpg",
-  },
-  {
-    id: 5,
-    state: false,
-    "back-image": "assets/powertyCard.jpg",
-    "front-image": "assets/cardpattern.jpg",
-  },
-  {
-    id: 6,
-    state: false,
-    "back-image": "assets/wealthCard.jpg",
-    "front-image": "assets/cardpattern.jpg",
-  },
-];
+document.addEventListener("DOMContentLoaded", () => {
+  doubleShuffleCards(); //calling the main function here
+}); // makes the js run after the HTML structure is ready in the DOM to be able to manipulate or interact with them
 
-//Doubling
-const doulbledCards = cardArray.map((card) => ({ ...card, id: card.id * 2 }));
-let doubleObjectsArray = [...cardArray, ...doulbledCards];
+function getData(callback) {
+  fetch(
+    "https://raw.githubusercontent.com/GuzideGuzelbey/GuzideGuzelbey.github.io/refs/heads/main/memorygame-data/data.json"
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      callback(data);
+    });
+}
 
 //Shuffling (reference code: https://stackoverflow.com/a/12646864)
 function shuffleArray(array) {
@@ -52,26 +25,41 @@ function shuffleArray(array) {
   return array;
 }
 
-const shuffeled = shuffleArray(doubleObjectsArray);
+function doubleShuffleGenerateCards() {
+  getData(function (cardArray) {
+    //Doubling
+    const doubledCards = cardArray.map((card) => ({
+      ...card,
+      id: card.id * 2,
+    }));
+    const doubleObjectsArray = [...cardArray, ...doubledCards];
+    const shuffledCards = shuffleArray(doubleObjectsArray); // shuffling doubled cards
 
-const cardsContainerElement = document.querySelector("#cards-container");
+    generateCards(shuffledCards);
+  });
+}
 
-// Generating card elements
-shuffeled.forEach((card) => {
-  const cardElement = document.createElement("div");
-  cardElement.classList.add("card");
-  cardsContainerElement.appendChild(cardElement);
+//Generate card elements
+function generateCards(cards) {
+  const cardsContainerElement = document.querySelector("#cards-container");
+  cardsContainerElement.innerHTML = "";
 
-  card.cardElement = cardElement; // to prevent
+  cards.forEach((card) => {
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("card");
+    cardsContainerElement.appendChild(cardElement);
 
-  cardElement.innerHTML = `
+    card.cardElement = cardElement; // to keep sync DOM elemnt with the card object in js
+
+    cardElement.innerHTML = `
         <img class="front" src="${card["front-image"]}" alt="Card Front" />
         <img class="back" src="${card["back-image"]}" alt="Card Back" />
        `;
 
-  cardElement.classList.toggle("flipped", card.state); //state of the card in js and DOM will be sync
-  cardElement.addEventListener("click", () => flipCards(card, cardElement));
-});
+    cardElement.classList.toggle("flipped", card.state); //state of the card in js and DOM will be sync
+    cardElement.addEventListener("click", () => flipCards(card, cardElement));
+  });
+}
 
 let flippedCards = [];
 let matchedCards = [];
@@ -105,7 +93,7 @@ function checkForMatch() {
   if (card1["back-image"] === card2["back-image"]) {
     matchedCards.push(card1, card2);
     flippedCards = [];
-    if (matchedCards.length === shuffeled.length) {
+    if (matchedCards.length === document.querySelectorAll(".card").length) {
       stopTimer();
       alert("Yay! You won!");
     }
@@ -121,11 +109,21 @@ function checkForMatch() {
   }, twoCardsRevealDuration);
 }
 
+// Timer functions:
 function startTimer() {
   timer = setInterval(() => {
     timeElapsed++;
     updateTimerDisplay();
   }, 1000);
+}
+// inspiration: (https://eaj.no/how-to-make-a-countdown-timer-with-java-script)
+function updateTimerDisplay() {
+  const minutes = Math.floor(timeElapsed / 60);
+  const seconds = timeElapsed % 60;
+  document.querySelector(".timer").innerText = `${String(minutes).padStart(
+    2,
+    "0"
+  )}min ${String(seconds).padStart(2, "0")}sec`;
 }
 
 function stopTimer() {
@@ -135,13 +133,4 @@ function stopTimer() {
 
 function updateFlipCounter() {
   document.querySelector(".flip-counter").innerText = `Flips: ${flipCounter}`;
-}
-
-function updateTimerDisplay() {
-  const minutes = Math.floor(timeElapsed / 60);
-  const seconds = timeElapsed % 60;
-  document.querySelector(".timer").innerText = `${String(minutes).padStart(
-    2,
-    "0"
-  )}min ${String(seconds).padStart(2, "0")}sec`;
 }
