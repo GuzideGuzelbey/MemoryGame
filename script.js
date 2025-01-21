@@ -9,9 +9,7 @@ function getData(callback) {
     .then((response) => {
       return response.json();
     })
-    .then((data) => {
-      callback(data);
-    });
+    .then(callback);
 }
 
 //Shuffling (reference code: https://stackoverflow.com/a/12646864)
