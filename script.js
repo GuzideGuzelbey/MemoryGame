@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  doubleShuffleGenerateCards(); //calling the main function here
+  doubleShuffleRenderCards(); //calling the main function here
 }); // makes the js run after the HTML structure is ready in the DOM to be able to manipulate or interact with them
 
 function getData(callback) {
@@ -23,7 +23,7 @@ function shuffleArray(array) {
   return array;
 }
 
-function doubleShuffleGenerateCards() {
+function doubleShuffleRenderCards() {
   getData(function (cardArray) {
     //Doubling
     const doubledCards = cardArray.map((card) => ({
@@ -33,12 +33,12 @@ function doubleShuffleGenerateCards() {
     const doubleObjectsArray = [...cardArray, ...doubledCards];
     const shuffledCards = shuffleArray(doubleObjectsArray); // shuffling doubled cards
 
-    generateCards(shuffledCards);
+    renderCards(shuffledCards);
   });
 }
 
-//Generate card elements
-function generateCards(cards) {
+//Cerate and display card elements
+function renderCards(cards) {
   const cardsContainerElement = document.querySelector("#cards-container");
   cardsContainerElement.innerHTML = "";
 
