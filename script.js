@@ -25,19 +25,16 @@ function shuffleArray(array) {
 
 function doubleShuffleRenderCards() {
   getData(function (cardArray) {
-    //Doubling
-    const doubledCards = cardArray.map((card) => ({
-      ...card,
-      id: card.id * 2,
-    }));
-    const doubleObjectsArray = [...cardArray, ...doubledCards];
+    const doubleObjectsArray = cardArray // ref:("https://stackoverflow.com/a/52234857" comment 9)
+      .map((card) => ({ ...card }))
+      .concat(cardArray.map((card) => ({ ...card }))); // doubbling array by clonning card objects to prevent referencing the same object when flipping
     const shuffledCards = shuffleArray(doubleObjectsArray); // shuffling doubled cards
 
     renderCards(shuffledCards);
   });
 }
 
-//Cerate and display card elements
+//Create and display card elements
 function renderCards(cards) {
   const cardsContainerElement = document.querySelector("#cards-container");
   cardsContainerElement.innerHTML = "";
@@ -47,7 +44,7 @@ function renderCards(cards) {
     cardElement.classList.add("card");
     cardsContainerElement.appendChild(cardElement);
 
-    card.cardElement = cardElement; // to keep sync DOM elemnt with the card object in js
+    card.cardElement = cardElement; // to keep sync DOM element with the card object in js
 
     cardElement.innerHTML = `
         <img class="front" src="${card["front-image"]}" alt="Card Front" />
@@ -71,12 +68,15 @@ function flipCards(card, cardElement) {
   if (!timer) {
     startTimer();
   }
+
   if (!card.state && flippedCards.length < 2 && !matchedCards.includes(card)) {
+    // flipping the card
     card.state = true;
     cardElement.classList.toggle("flipped", card.state); // state of the card in js and DOM will be sync
     flippedCards.push(card);
     flipCounter++;
     updateFlipCounter();
+
     // Checking for a match if two cards are flipped
     if (flippedCards.length === 2) {
       checkForMatch();
@@ -88,15 +88,16 @@ function flipCards(card, cardElement) {
 function checkForMatch() {
   const [card1, card2] = flippedCards;
 
-  if (card1["back-image"] === card2["back-image"]) {
+  if (card1.id === card2.id) {
     matchedCards.push(card1, card2);
     flippedCards = [];
+
+    // Checking the game result
     if (matchedCards.length === document.querySelectorAll(".card").length) {
       stopTimer();
       alert("Yay! You won!");
     }
   }
-
   const twoCardsRevealDuration = 700;
   setTimeout(() => {
     flippedCards.forEach((card) => {
