@@ -1,7 +1,8 @@
 # MemoryGame
 
-Instructions Given by the HackYourFutureDenmarkMentors
+Demo: https://mem-memorygame.netlify.app/
 
-You joined an online game platform startup and your task is to build one of the small classic games.
+It is a Vanlla JS project of a web developmnet bootcamp called HackYourFuture Denmark.
+Here are the requirements: https://github.com/HackYourFuture-CPH/JavaScript/blob/main/homework-projects/projects/memory-game/memory-game.md
 
-You will build a Memory Game, where a user needs to flip all the cards in a game in pairs until they find all the matching pairs. You aspire to make the game smooth and pleasant, so the user is compelled to spend more time playing it.
+Languages Used: HTML, CSS, JavaScript
