@@ -1,112 +1,151 @@
-body {
-  background-color: violet;
-  height: 100vh;
+* {
+  box-sizing: border-box;
   margin: 0;
-  overflow: hidden;
+  padding: 0;
+}
+
+html,
+body {
   display: flex;
-  flex-direction: column; /* Align children in a column */
-  justify-content: center; /* Center the content vertically */
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgb(234, 112, 234);
 }
 
 .content-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-grow: 1;
   width: 100%;
-}
-
-.features {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.timer {
-  font-family: "Orbitron", sans-serif;
-  font-size: 1.2rem;
-  color: rgb(189, 189, 189);
-  background-color: rgb(63, 63, 63);
-  padding: 0.2rem;
-  border-radius: 5px;
-}
-
-.timer span {
-  font-family: "Orbitron", sans-serif;
-  font-weight: 600;
-  width: 1.5rem;
-}
-
-.timer span:last-child {
-  margin-left: 0.3rem;
-}
-
-.flip-counter {
-  font-family: "Orbitron", sans-serif;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: rgb(217, 211, 43);
-  background-color: rgb(63, 63, 63);
-  padding: 0.2rem;
-  border-radius: 5px;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding-top: 2rem;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
 }
 
 .game-title {
-  align-self: center;
+  text-align: center;
   color: rgb(63, 63, 63);
   font-family: Helvetica, sans-serif;
   font-weight: 700;
   font-size: 2em;
-  text-align: justify;
+  flex-shrink: 0;
+}
+
+h3 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: rgb(255, 254, 254);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(197, 140, 198, 0.8);
+  box-shadow: rgb(104, 104, 104) 0px 5px 19px 0px;
+  border-radius: 8px 8px 0 0;
+  max-width: 600px;
+  width: 100%;
+}
+
+.left {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.flip-counter,
+.timer {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(189, 189, 189);
+  background-color: rgb(63, 63, 63);
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+}
+
+.button-wrapper {
+  margin-left: auto;
+}
+
+button {
+  width: 8rem;
+  height: 2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08rem;
+  font-weight: 700;
+  color: rgb(63, 63, 63);
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 20px;
+  border: 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+}
+
+button:hover {
+  background-color: rgb(63, 63, 63);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(63, 63, 63) 0px 7px 29px 0px;
 }
 
 #cards-container {
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 15px 15px;
-  place-items: center;
-  perspective: 1000px;
-  background-color: rgb(169, 120, 171, 0.5);
-  border-radius: 8px;
-  padding: 10px;
-  margin: 0 auto;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem auto 0;
+  background-color: rgba(197, 140, 198, 0.8);
+  border-radius: 0 0 10px 10px;
+  max-width: 600px;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  box-shadow: rgb(104, 104, 104) 0px 0px 19px 0px;
+  flex-grow: 1;
 }
 
 .card {
-  width: 150px;
-  height: 200px;
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  max-width: 10rem;
+  height: auto;
   position: relative;
   cursor: pointer;
   transform-style: preserve-3d;
-  transition: transform 0.6s;
-}
-
-.flipped {
-  transform: rotateY(180deg);
+  transition: transform 0.6s ease;
+  border-radius: 8px;
 }
 
 .card img {
   width: 100%;
   height: 100%;
-  margin: auto;
-  backface-visibility: hidden;
   position: absolute;
+  backface-visibility: hidden;
   border-radius: 8px;
 }
+
 .card .front {
   transform: rotateY(0deg);
   z-index: 2;
@@ -116,35 +155,97 @@ body {
   transform: rotateY(180deg);
 }
 
+.flipped {
+  transform: rotateY(180deg);
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.matched {
+  animation: shake 0.5s ease-in-out;
+}
+
 @media only screen and (max-width: 768px) {
   .game-title {
-    font-size: 1.5em;
-    text-align: center;
+    font-size: 1.8em;
   }
 
-  .container {
-    padding: 1rem;
+  h3 {
+    font-size: 1rem;
+  }
+
+  .features {
+    padding: 0.8vh 1.5vw;
+  }
+
+  .flip-counter,
+  .timer {
+    font-size: 0.9rem;
+  }
+
+  button {
+    width: 7rem;
+    height: 1.8rem;
+    font-size: 0.7rem;
   }
 
   #cards-container {
-    grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    padding: 1rem;
   }
 
   .card {
-    width: 90px;
-    height: 120px;
+    max-width: 8rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .game-title {
+    font-size: 1.5em;
   }
 
+  h3 {
+    font-size: 0.9rem;
+  }
+
+  .features {
+    padding: 0.5vh 1vw;
+  }
+
+  .flip-counter,
   .timer {
-    font-size: 0.9rem;
-    border-radius: 3px;
+    font-size: 0.8rem;
   }
 
-  .flip-counter {
-    font-family: "Orbitron", sans-serif;
-    font-size: 0.9rem;
-    font-weight: 400;
-    border-radius: 3px;
+  button {
+    width: 5rem;
+    height: 1.6rem;
+    font-size: 0.65rem;
+  }
+
+  #cards-container {
+    gap: 0.6rem;
+    padding: 0.8rem;
+  }
+
+  .card {
+    max-width: 6.5rem;
   }
 }
