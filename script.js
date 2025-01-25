@@ -93,6 +93,16 @@ function checkForMatch() {
 
   if (card1.id === card2.id) {
     matchedCards.push(card1, card2);
+
+    // card match animation
+    card1.cardElement.classList.add("matched");
+    card2.cardElement.classList.add("matched");
+
+    setTimeout(() => {
+      card1.cardElement.classList.remove("matched");
+      card2.cardElement.classList.remove("matched");
+    }, 500);
+
     flippedCards = [];
 
     // Checking the game result
@@ -150,7 +160,7 @@ function stopGame() {
 
   gameOver = true;
 
-  alert("Time is up! Game over!");
+  alert("Time is up! Game over!\nPress 'Restart' button to play again.");
 }
 
 const restartButton = document.getElementById("restart-button");
