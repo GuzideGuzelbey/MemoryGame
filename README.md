@@ -9,4 +9,4 @@ Requirements of the project: https://github.com/HackYourFuture-CPH/JavaScript/bl
 
 Demo: https://mem-memorygame.netlify.app/
 
-Languages Used: HTML, CSS, JavaScript
+Developed with: HTML, CSS, JavaScript
